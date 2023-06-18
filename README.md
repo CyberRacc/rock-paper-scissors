@@ -1,2 +1,4 @@
-# rock-paper-scissors
-rock-paper-scissors project for The Odin Project.
+# Rock Paper Scissors game in JavaScript
+
+
+This is my first JavaScript project for The Odin Project.
