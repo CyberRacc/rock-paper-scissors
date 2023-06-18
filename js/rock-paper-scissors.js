@@ -17,17 +17,26 @@ Plan
 
 */
 
-function getComputerChoice(rock, paper, scissors) {
-    let computerSelection = Math.floor(Math.random() * getComputerChoice)
+function getComputerChoice(choice) {
+    let choice = Math.random(0, 100);
+
+    console.log(choice);
 }
 
 function playRound(playerSelection, computerSelection) {
+    let playerSelection = prompt("Make your choice: ");
+    playerSelection.toLowerCase();
 
+    if (playerSelection == "rock" && computerSelection == "paper") {
+        console.log("You lost, paper beats rock!")
+    } else if (playerSelection == "paper" && computerSelection == "rock") {
+        console.log("You win, paper beats rock!");
+    } else if (playerSelection == "scissors" && computerSelection == "rock") {
+        console.log("You lose, rock beats scissors!");
+    } else {
+        console.log("Code not written yet!")
+    }
 }
-
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
 
 function game() {
     playRound()
