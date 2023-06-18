@@ -17,7 +17,15 @@ Plan
 
 Pseudocode
 
-    Generate a random number, use the random number to 
+    Generate a random number, use Math.random to generate a number between 0 and 1.
+    There are three possible values, "rock", "paper", and "scissors" so we will
+    use thirds to get the result. If the number generated is less than or equal
+    to 0.33, then the computer has selected "rock", if the number is greater than
+    0.33 AND less than or equal to 0.67, then the computer has chosen "paper".
+    Anything else, and the computer has chosen "scissors".
+
+    Get a choice from the player using a prompt, convert the answer to lowercase,
+    use the lowecase answer to compare to computerSelection.
 
 */
 
