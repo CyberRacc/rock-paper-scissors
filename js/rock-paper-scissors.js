@@ -15,17 +15,34 @@ Plan
     Each function should return a result, not console.log the results. This is so
     I can use the results later.
 
+Pseudocode
+
+    Generate a random number, use the random number to 
+
 */
 
-function getComputerChoice(choice) {
-    let choice = Math.random(0, 100);
+function getComputerChoice() {
 
-    console.log(choice);
+    let computerSelection;
+
+    let getChoice = Math.random();
+
+    if (getChoice <= 0.33) {
+        computerSelection = "rock";
+    } else if (getChoice > 0.33 && getChoice <= 0.67) {
+        computerSelection = "paper";
+    } else {
+        computerSelection = "scissors";
+    }
+
+    return computerSelection;
 }
 
 function playRound(playerSelection, computerSelection) {
-    let playerSelection = prompt("Make your choice: ");
-    playerSelection.toLowerCase();
+
+    playerSelection = prompt("Make your choice: ");
+
+    let playerLower = playerSelection.toLowerCase();
 
     if (playerSelection == "rock" && computerSelection == "paper") {
         console.log("You lost, paper beats rock!")
@@ -44,4 +61,7 @@ function game() {
     playRound()
     playRound()
     playRound()
+
+    console.log(result1 + result2 + result3 + result4 + result5);
+
 }
