@@ -50,16 +50,30 @@ function playRound(playerSelection, computerSelection) {
 
     playerSelection = prompt("Make your choice: ");
 
-    let playerLower = playerSelection.toLowerCase();
+    let playerSelLower = playerSelection.toLowerCase();
 
-    if (playerSelection == "rock" && computerSelection == "paper") {
-        console.log("You lost, paper beats rock!")
-    } else if (playerSelection == "paper" && computerSelection == "rock") {
+    computerSelection = getComputerChoice();
+
+    console.log(`User selected: ${playerSelLower}!`);
+
+    console.log(`Computer selected: ${computerSelection}!`);
+
+    if (playerSelLower == "rock" && computerSelection == "paper") {
+        console.log("You lost, paper beats rock!");
+    } else if (playerSelLower == "paper" && computerSelection == "rock") {
         console.log("You win, paper beats rock!");
-    } else if (playerSelection == "scissors" && computerSelection == "rock") {
+    } else if (playerSelLower == "scissors" && computerSelection == "rock") {
         console.log("You lose, rock beats scissors!");
+    } else if (playerSelLower == "rock" && computerSelection == "scissors") {
+        console.log("You win, rock beats scissors!");
+    } else if (playerSelLower == "paper" && computerSelection == "scissors") {
+        console.log("You lose, paper beats scissors!");
+    } else if (playerSelLower == "scissors" && computerSelection == "paper") {
+        console.log("You win, scissors beats paper!");
+    } else if (playerSelLower == computerSelection) {
+        console.log(`You both selected ${playerSelLower}, it's a draw!`);    
     } else {
-        console.log("Code not written yet!")
+        console.log("Code not written yet!");
     }
 }
 
