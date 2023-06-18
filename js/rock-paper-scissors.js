@@ -46,13 +46,27 @@ function getComputerChoice() {
     return computerSelection;
 }
 
-function playRound(playerSelection, computerSelection) {
+function getPlayerChoice() {
 
-    playerSelection = prompt("Make your choice: ");
+    let playerSelection = prompt("Enter rock, paper, or scissors: ");
 
     let playerSelLower = playerSelection.toLowerCase();
 
+    return playerSelLower;
+
+}
+
+function playRound(playerSelection, computerSelection) {
+
+    playerSelLower = getPlayerChoice();
+
     computerSelection = getComputerChoice();
+
+    const beats = {
+        "rock": "scissors",
+        "paper": "rock",
+        "scissors": "paper"
+    };
 
     console.log(`User selected: ${playerSelLower}!`);
 
@@ -73,7 +87,7 @@ function playRound(playerSelection, computerSelection) {
     } else if (playerSelLower == computerSelection) {
         console.log(`You both selected ${playerSelLower}, it's a draw!`);    
     } else {
-        console.log("Code not written yet!");
+        console.log("Incorrect input :(");
     }
 }
 
