@@ -29,6 +29,11 @@ Pseudocode
 
 */
 
+let computerWins = 0;
+let playerWins = 0;
+let roundsPlayed = 0;
+let stopGame = false;
+
 function getComputerChoice() {
 
     let computerSelection;
@@ -50,16 +55,14 @@ function getPlayerChoice() {
 
     let playerSelection = prompt("Enter rock, paper, or scissors: ");
 
-    let playerSelLower = playerSelection.toLowerCase();
-
-    return playerSelLower;
+    if (playerSelection === null || playerSelection === "") {
+        return console.log("Game cancelled"), stopGame = true, console.log("Game Stopped? " + stopGame);
+    } else {
+        let playerSelLower = playerSelection.toLowerCase();
+        return playerSelLower;
+    }
 
 }
-
-let computerWins = 0;
-let playerWins = 0;
-let roundsPlayed = 0;
-let stopGame = false;
 
 function playRound(playerSelLower, computerSelection) {
 
@@ -77,24 +80,24 @@ function playRound(playerSelLower, computerSelection) {
 
     console.log(`Computer selected: ${computerSelection}!`);
 
-    if (computerSelection === beats[playerSelLower]) {
-        console.log(`You win, ${playerSelLower} beats ${computerSelection}!`);
-        playerWins ++;
-    } else if (playerSelLower === beats[computerSelection]) {
-        console.log(`You lose, ${computerSelection} beats ${playerSelLower}!`)
-        computerWins ++;
-    } else if (playerSelLower == computerSelection) {
-        console.log(`You both selected ${playerSelLower}, it's a draw!`);
-        computerWins ++;
-        playerWins ++;
+    if (stopGame === false) {
+        if (computerSelection === beats[playerSelLower]) {
+            console.log(`You win, ${playerSelLower} beats ${computerSelection}!`);
+            playerWins ++;
+        } else if (playerSelLower === beats[computerSelection]) {
+            console.log(`You lose, ${computerSelection} beats ${playerSelLower}!`)
+            computerWins ++;
+        } else if (playerSelLower == computerSelection) {
+            console.log(`You both selected ${playerSelLower}, it's a draw!`);
+        } else {
+            return stopGame = true;
+        }
     } else {
-        console.log("Incorrect input :(");
-        return stopGame = true;
+        return console.log("Game halted due to incorrect input.")
     }
-
     roundsPlayed ++;
     
-    return playerWins, computerWins;
+    return playerWins, computerWins, stopGame;
 
 }
 
@@ -102,19 +105,55 @@ function game() {
 
     console.log("Let the game begin!");
 
-    console.log("Player, please make your choice.");
-
+    // Round 1
     if (stopGame === false) {
+        console.log("Round 1 of 5")
+        console.log("Player, please make your choice.");
         playRound();
-        playRound();
-        playRound();
-        playRound();
-        playRound();
+        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
     } else {
-        return console.log("Game halted due to incorrect input.");
+        return console.log("Game cancelled");
     }
 
-    console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
+    // Round 2
+    if (stopGame === false) {
+        console.log("Round 2 of 5")
+        console.log("Player, please make your choice.");
+        playRound();
+        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
+    } else {
+        return console.log("Game cancelled");
+    }
+
+    // Round 3
+    if (stopGame === false) {
+        console.log("Round 3 of 5")
+        console.log("Player, please make your choice.");
+        playRound();
+        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
+    } else {
+        return console.log("Game cancelled");
+    }
+
+    // Round 4
+    if (stopGame === false) {
+        console.log("Round 4 of 5")
+        console.log("Player, please make your choice.");
+        playRound();
+        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
+    } else {
+        return console.log("Game cancelled");
+    }
+
+    // Round 5
+    if (stopGame === false) {
+        console.log("Round 5 of 5")
+        console.log("Player, please make your choice.");
+        playRound();
+        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
+    } else {
+        return console.log("Game cancelled");
+    }
 
     if (playerWins > computerWins) {
         console.log("You've won the game!");
