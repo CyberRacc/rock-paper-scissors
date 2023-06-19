@@ -95,9 +95,8 @@ function playRound(playerSelLower, computerSelection) {
     } else {
         return console.log("Game halted due to incorrect input.")
     }
-    roundsPlayed ++;
     
-    return playerWins, computerWins, stopGame;
+    roundsPlayed ++;
 
 }
 
