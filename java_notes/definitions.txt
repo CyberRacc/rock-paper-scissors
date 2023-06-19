@@ -1,0 +1,29 @@
+String: A sequence of characters in single or double quotes.
+
+Function: A block of reusable code that performs a specific task.
+They are a way to group code into sub-programs that can be called.
+
+An example of a basic function:
+
+function greet() {
+    console.log("Hello, world!");
+}
+
+in the above example, greet is the name of the function.
+There are no parameters though as the brackets next to greet are empty.
+When called it prints "Hello, world!" to the console.
+
+You can call it by using its name with brackets.
+greet(); // Outputs: Hello, world!
+
+Functions can also take parameters, which are variables that are used
+as imputs to the function, an example:
+
+function greet(name) {
+    console.log("Hello, " + name  + "!");
+}
+
+in the above example, name is a paremeter, when the function is called,
+you can pass in an argument for this parameter:
+
+greet("Alice"); //m Outputs: Hello, Alice!

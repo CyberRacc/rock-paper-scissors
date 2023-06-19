@@ -1,0 +1,36 @@
+    length: This property returns the number of characters in a string.
+
+    slice(startIndex, endIndex): This method extracts a section of a string and returns a new string,
+    without modifying the original string. startIndex is where the extraction starts and endIndex is where it ends.
+    If endIndex is omitted, the slice includes all characters from startIndex to the end of the string.
+
+    substring(startIndex, endIndex): This method is similar to slice(), but it can't accept negative indexes.
+
+    substr(startIndex, length): This method is similar to slice(), but the second argument specifies the length of the extracted part.
+
+    replace(searchValue, newValue): This method replaces the first instance of searchValue with newValue in the string.
+
+    replaceAll(searchValue, newValue): This method replaces all instances of searchValue with newValue in the string.
+
+    toUpperCase(): This method converts all the characters in the string to uppercase.
+
+    toLowerCase(): This method converts all the characters in the string to lowercase.
+
+    concat(string2, string3, ..., stringX): This method combines two or more strings and returns a new string.
+
+    trim(): This method removes whitespace from both ends of a string.
+
+    trimStart(): This method removes whitespace from the beginning of a string.
+
+    trimEnd(): This method removes whitespace from the end of a string.
+
+    padStart(targetLength, padString): This method pads the current string from the start with another string (padString) until the resulting string reaches the targetLength.
+    The padding is applied from the start of the current string.
+
+    padEnd(targetLength, padString): This method is the same as padStart(), but it pads from the end of the current string.
+
+    charAt(index): This method returns the character at the specified index in the string.
+
+    charCodeAt(index): This method returns the Unicode of the character at the specified index in the string.
+
+    split(separator, limit): This method splits a string into an array of substrings, using a specified separator string to determine where to make each split. The limit parameter is optional and represents the maximum number of splits.
