@@ -56,7 +56,12 @@ function getPlayerChoice() {
 
 }
 
-function playRound(playerSelection, computerSelection) {
+let computerWins = 0;
+let playerWins = 0;
+let roundsPlayed = 0;
+let stopGame = false;
+
+function playRound(playerSelLower, computerSelection) {
 
     playerSelLower = getPlayerChoice();
 
@@ -72,32 +77,60 @@ function playRound(playerSelection, computerSelection) {
 
     console.log(`Computer selected: ${computerSelection}!`);
 
-    if (playerSelLower == "rock" && computerSelection == "paper") {
-        console.log("You lost, paper beats rock!");
-    } else if (playerSelLower == "paper" && computerSelection == "rock") {
-        console.log("You win, paper beats rock!");
-    } else if (playerSelLower == "scissors" && computerSelection == "rock") {
-        console.log("You lose, rock beats scissors!");
-    } else if (playerSelLower == "rock" && computerSelection == "scissors") {
-        console.log("You win, rock beats scissors!");
-    } else if (playerSelLower == "paper" && computerSelection == "scissors") {
-        console.log("You lose, paper beats scissors!");
-    } else if (playerSelLower == "scissors" && computerSelection == "paper") {
-        console.log("You win, scissors beats paper!");
+    if (computerSelection === beats[playerSelLower]) {
+        console.log(`You win, ${playerSelLower} beats ${computerSelection}!`);
+        playerWins ++;
+    } else if (playerSelLower === beats[computerSelection]) {
+        console.log(`You lose, ${computerSelection} beats ${playerSelLower}!`)
+        computerWins ++;
     } else if (playerSelLower == computerSelection) {
-        console.log(`You both selected ${playerSelLower}, it's a draw!`);    
+        console.log(`You both selected ${playerSelLower}, it's a draw!`);
+        computerWins ++;
+        playerWins ++;
     } else {
         console.log("Incorrect input :(");
+        return stopGame = true;
     }
+
+    roundsPlayed ++;
+    
+    return playerWins, computerWins;
+
 }
 
 function game() {
-    playRound()
-    playRound()
-    playRound()
-    playRound()
-    playRound()
 
-    console.log(result1 + result2 + result3 + result4 + result5);
+    console.log("Let the game begin!");
+
+    console.log("Player, please make your choice.");
+
+    if (stopGame === false) {
+        playRound();
+        playRound();
+        playRound();
+        playRound();
+        playRound();
+    } else {
+        return console.log("Game halted due to incorrect input.");
+    }
+
+    console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
+
+    if (playerWins > computerWins) {
+        console.log("You've won the game!");
+    } else if (playerWins === computerWins) {
+        console.log("It's a draw, play another round.");
+        playRound();
+        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
+        if (playerWins > computerWins) {
+            console.log("You've won the game!");
+        } else {
+            console.log("You've lost the game :(")
+        }
+    } else {
+        console.log("You've lost the game :(");
+    }
+
+    console.log("The game is over!");
 
 }
