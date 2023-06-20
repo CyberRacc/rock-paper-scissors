@@ -77,4 +77,108 @@
         console.log(filtered);
         // ["Leadpard", "Lion"]
 
-    
+    This looks a lot like a map(), except the function we pass in returns a
+    boolean: if it returns true then the item is included in the new array.
+    Our function tests that the item strats with the letter "L", so the
+    result is in an array containing only cats whose names start with "L":
+
+    [ "Leapard", "Lion" ]
+
+    Note that map() and filter() are both often used with function
+    expressions. Using function expressions we could rewrite the
+    example above to be much more compact:
+
+    const cats = ["Leopard", "Serval", "Jaguar",
+    "Tiger", "Caracal", "Lion"];
+
+    const filtered = cats.filter((cat) =>
+    cat.startsWith("L"));
+    console.log(filtered);
+    // ["Leapard", "Lion"]
+
+## The standard for loop ##
+
+    In the "drawing circles" example, you don't have a collection of items
+    to loop through: you really just want to run the same code 100 times.
+    In a case like that, you should use the for loop. This has the following
+    syntax:
+
+    for (initialiser; condition; final-expression) {
+        // code to run
+    }
+
+    Here we have:
+
+        1. The keyword for, followed by brackets.
+
+        2. Inside the brackets we have three items, separated by semi-colons:
+
+            i. An initialiser - this is usually a variable set to a number,
+            which is incremented to count to the number of times the loop
+            has run. It is also sometimes referred to as a counter
+            variable.
+
+            ii. A condition - this defines when the loop should stop looping.
+            This is generally an expression featuring a comparison operator,
+            a test to see if the exit condition has been met.
+
+        3. Some curly brackets that contain a block of code -
+        this code will be run each time the loop iterates.
+
+## Calculating Squares ##
+
+    Let's look at a real example so we can visualise these do
+    more clearly.
+
+    const results =
+    document.querySelector("#results");
+
+    function calculate() {
+        for (let i = 1; i < 10; i++) {
+            const newResult = `${1} x ${1} =${1 * 1}`;
+            results.textContent += `${newResult}\n`;
+        }
+        results.textContent += "\nFinished!"
+    }
+
+    const calculateBtn =
+    document.querySelector("#calculate");
+    const clearBtn =
+    document.querySelector("#clear");
+
+    calculateBtn.addEventListener("click",
+    calculate);
+    clearBtn.addEventListener("click", () =>
+    (results.textContent = ""));
+
+    This gives us this output:
+
+        1 x 1 = 1
+        2 x 2 = 4
+        3 x 3 = 9
+        4 x 4 = 16
+        5 x 5 = 25
+        6 x 6 = 36
+        7 x 7 = 49
+        8 x 8 = 64
+        9 x 9 = 81
+
+        Finished!
+
+    This code calculates squares for the numbers from 1 to 9,
+    and writes out the result. The core of the code is the for
+    loop that performs the calculation.
+
+    Let's break down the for (let i =1; i < 10; i++) line into its
+    three pieces:
+
+        1. let i = 1: the counter variables, i, starts at 1. Note
+        that we have to use let for the counter because we're reassigning it
+        each time we go round the loop.
+
+        2. i < 10: keep going round the loop for as long as i is smaller
+        than 10.
+
+        3. i++: add one to 1 each time round the loop.
+
+    Inside the loop

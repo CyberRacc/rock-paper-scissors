@@ -80,23 +80,17 @@ function playRound(playerSelLower, computerSelection) {
 
     console.log(`Computer selected: ${computerSelection}!`);
 
-    if (stopGame === false) {
-        if (computerSelection === beats[playerSelLower]) {
-            console.log(`You win, ${playerSelLower} beats ${computerSelection}!`);
-            playerWins ++;
-        } else if (playerSelLower === beats[computerSelection]) {
-            console.log(`You lose, ${computerSelection} beats ${playerSelLower}!`)
-            computerWins ++;
-        } else if (playerSelLower == computerSelection) {
-            console.log(`You both selected ${playerSelLower}, it's a draw!`);
-        } else {
-            return stopGame = true;
-        }
+    if (computerSelection === beats[playerSelLower]) {
+        console.log(`You win, ${playerSelLower} beats ${computerSelection}!`);
+        playerWins ++;
+    } else if (playerSelLower === beats[computerSelection]) {
+        console.log(`You lose, ${computerSelection} beats ${playerSelLower}!`)
+        computerWins ++;
+    } else if (playerSelLower == computerSelection) {
+        console.log(`You both selected ${playerSelLower}, it's a draw!`);
     } else {
-        return console.log("Game halted due to incorrect input.")
+        return stopGame = true;
     }
-    
-    roundsPlayed ++;
 
 }
 
@@ -104,54 +98,12 @@ function game() {
 
     console.log("Let the game begin!");
 
-    // Round 1
-    if (stopGame === false) {
-        console.log("Round 1 of 5")
-        console.log("Player, please make your choice.");
-        playRound();
-        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
-    } else {
-        return console.log("Game cancelled");
-    }
-
-    // Round 2
-    if (stopGame === false) {
-        console.log("Round 2 of 5")
-        console.log("Player, please make your choice.");
-        playRound();
-        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
-    } else {
-        return console.log("Game cancelled");
-    }
-
-    // Round 3
-    if (stopGame === false) {
-        console.log("Round 3 of 5")
-        console.log("Player, please make your choice.");
-        playRound();
-        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
-    } else {
-        return console.log("Game cancelled");
-    }
-
-    // Round 4
-    if (stopGame === false) {
-        console.log("Round 4 of 5")
-        console.log("Player, please make your choice.");
-        playRound();
-        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
-    } else {
-        return console.log("Game cancelled");
-    }
-
-    // Round 5
-    if (stopGame === false) {
-        console.log("Round 5 of 5")
-        console.log("Player, please make your choice.");
-        playRound();
-        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
-    } else {
-        return console.log("Game cancelled");
+    for (i = roundsPlayed; i == 5; i++) {
+        if (stopGame == false) {
+            playRound();
+        } else {
+            return "Game Cancelled in game function."
+        }
     }
 
     if (playerWins > computerWins) {
