@@ -1,0 +1,43 @@
+
+## Looping Code ##
+
+    Programming languages are very useful for rapidly completing repetitive tasks, from multiple
+    basic calculations to just about any other situation where you've got a lot of similar
+    items of work to complete. Here we'll look at the loop structures available in
+    JavaScript that handle such needs.
+
+    ## Why are loops useful? ##
+
+    Loops are all about doing the same thing over and over again. Often, the code will be
+    slightly different each time round the loop, or the same code will run but with
+    different variables.
+
+## Looping through a collection ##
+
+    Most of the time when you use a loop, you will have a collection of items and want to do
+    something with every item.
+
+    One type of collection is the Array. But there are other collections in JavaScript as well,
+    including Set and Map.
+
+## The for...of loop ##
+
+    The basic tool for looping through a collection is the for...of loop:
+
+    const cats = ["Leapard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
+
+    for (const cat of cats) {
+        console.log(cat);
+    }
+
+    In this example, for (const cat of cats) says:
+
+        1. Given the collection of cats, get the first item in the collection.
+
+        2. Assign it to the variable cat and then run the code between the curly brackets {}.
+
+        3. Get the next item, and repeat (2) until you've reached the end of the collection.
+
+## map() and filter() ##
+
+    JavaScript 
