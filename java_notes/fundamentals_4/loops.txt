@@ -181,4 +181,45 @@
 
         3. i++: add one to 1 each time round the loop.
 
-    Inside the loop
+    Inside the loop, we calculate the square of the current value of i,
+    that is: i * i. We create a string expressing the calculation we made
+    and the result, and add this string to the output text. We also add \n,
+    so the next string we add will begin on a new line. So:
+
+        1. During the first run, i = 1, so we will ad 1 x 1 = 1.
+
+        2. During the second run, i = 2, so we will add 2 x 2 = 4.
+
+        3. And so on...
+
+        4. When i becomes equal to 10 we stop running the loop and move
+        straight to the next bit of code below the loop, printing out the
+        Finished! message on a new line.
+
+## Looping through collections with a for loop ##
+
+    You can use a for loop to iterate through a collection, instead
+    of a for...of loop.
+
+    Let's look again at our for...of example above:
+
+        const cats = ["Leopard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
+
+        for (const cat of cats) {
+        console.log(cat);
+        }
+
+    We could rewrite that code like this:
+
+        const cats = ["Leapard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
+
+        for (let 1 = 0; i < cats.length; i++) {
+            console.log(cats[i]);
+        }
+
+    In this loop we're starting i at 0, and stopping when i reaches the length
+    of the array. Then inside the loop, we're using i to access each item
+    in the array in turn.
+
+    
+

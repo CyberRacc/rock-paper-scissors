@@ -56,7 +56,7 @@ function getPlayerChoice() {
     let playerSelection = prompt("Enter rock, paper, or scissors: ");
 
     if (playerSelection === null || playerSelection === "") {
-        return console.log("Game cancelled"), stopGame = true, console.log("Game Stopped? " + stopGame);
+        return stopGame = true;
     } else {
         let playerSelLower = playerSelection.toLowerCase();
         return playerSelLower;
@@ -96,13 +96,21 @@ function playRound(playerSelLower, computerSelection) {
 
 function game() {
 
+    stopGame = false;
+
     console.log("Let the game begin!");
 
-    for (i = roundsPlayed; i == 5; i++) {
+    for (i = roundsPlayed = 1; i < 6; i++) {
         if (stopGame == false) {
+            console.log(`Round ${roundsPlayed}`)
+            roundsPlayed++;
             playRound();
+            console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`);
         } else {
-            return "Game Cancelled in game function."
+            // Temp output, need to restart the same round if incorrect input.
+            console.log("Incorrect input, try again.")
+            roundsPlayed - 1;
+            playRound();
         }
     }
 
