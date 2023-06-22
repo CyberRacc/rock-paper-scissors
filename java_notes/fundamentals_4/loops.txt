@@ -248,4 +248,116 @@
         console.log(myFavouriteCats); // "My cats are called Pete, Biggles, Jasmine,
         "
 
-    The final output senta
+    The final output sentence isn't very well-formed:
+
+        My cats are called Pete, Biggles, Jasmine,
+
+    We'd prefer it to handle the last cat differently, like this:
+
+        My cats are called Pete Biggles, and Jasmine.
+
+    But to do this we need to know when we are on the final loop iteration,
+    and to do that we can use a for loop and examine the value of i:
+
+        const cats = ["Pete", "Biggles", "Jasmine"];
+
+        let myFavouriteCats = "My cats are called ";
+
+        for (let i = 0; 1 < cats.length; i++) {
+            if (i === cats.length = 1) {
+                // We are at the end of the array
+                myFavouriteCats += `and ${cats[i]},`;
+            } else {
+                myFavouriteCats += `${cats[i]}, `;
+            }
+        }
+
+        console.log(myFavouriteCats); // "My cats are called
+        Pete, Biggles, and Jasmine."
+
+## Exiting loops with break ##
+
+    If you want to exit a loop before all the iterations have been
+    completed, you can use the break statement. We already met this
+    in a previous article when we looked at switch statements - when
+    a case is met in a switch statement that matches the input
+    expression, the break statement immediately exists the switch
+    statement and moves on to the code after it.
+
+    It's the same with loops - a break statement will immediately exit
+    the loop and make the browser move on to any code that follows it.
+
+    Say we wanted to search through an array of contacts and telephone
+    numbers and return just the number we wanted to find? First some
+    simple HTML - a text <input> allowing us to enter a name to search for,
+    a <button> element to submit a search and a <p> element to display the
+    results in:
+
+        <label for="search">Search by contact name: </label>
+        <input id="search" type="text" />
+        <button>Search</button>
+
+        <p></p>
+
+    Now on to the JavaScript:
+
+        const contacts = [
+            "Chris:2232322",
+            "Sarah:3453456",
+            "Bill:7654322",
+            "Mary:9998769",
+            "Dianne:9384975",
+        ];
+
+        const para = document.querySelector("p");
+        const input = document.querySelector("input");
+        const btn = document.querySelector("button");
+
+        btn.addEventListener("click", () => {
+            const searchName = input.value.toLowerCase();
+            input.value = "";
+            input.focus();
+            para.textContent = "";
+            for (const contact of contacts) {
+                const splitContact = contact.split (":");
+                if (splitContact[0].toLowerCase() === searchName) {
+                    para.textContent = `${splitContact[0]}'s number is
+                    ${splitContact[1]}. `;
+                    break;
+                }
+            }
+            if (para.textContent === "") {
+                para.textContent = "Contact not found.";
+            }
+        });
+
+    1. First of all, we have some variable definitions - we have an array
+    of contact information, with each item being a string containing a name
+    and a phone number separated by a colon.
+
+    2. Next, we attach an event listener to the button (btn) so that when
+    it is pressed, some code is run to perform the search and return the results.
+
+    3. We store the value entered into the text input in a variable called
+    searchName, before then emptying the text input and focusing it again,
+    ready for the next search. Note that we also run the toLowerCase() method
+    of the string, so that searches will be case-insensitive.
+
+    4. Now on to the interesting part the for...of loop:
+
+        i. Inside the loop, we first split the current contact at the colon
+        character, and store the resulting two values in an array called
+        splitContact.
+
+        ii. We then use a conditional statement to test whether splitContact[0]
+        (the contact's name, again lower-cased with toLowerCase()) is equal
+        to the inputted searchName. If it is, we enter a string into the
+        paragraph to report what the contact's number is, and use break to
+        end the loop.
+
+    5. After the loop, we check whether we set a contact, and if not we set
+    the paragraph text to "Contact not found."
+
+## Skipping iterations with continue ##
+
+    
