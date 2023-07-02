@@ -174,4 +174,65 @@
     Node that textContent is preferable for adding text, and innerHTML should
     be used sparingly as it can create security risks if misused.
 
+    Let's take a minute to review what we've covered and give you a chance
+    to practice this stuff before moving on. Check out this example of creating
+    and appending a DOM element to a webpage.
+
+        <!-- your HTML file: -->
+        <body>
+            <h1>
+                THE TITLE OF YOUR WEBPAGE
+            </h1>
+            <div id="container"></div>
+        </body>
+
+        // your JavaScript file
+        const container = document.querySelector('#container');
+
+        const content = document.createElement('div');
+        content.classList.add('content');
+        content.textContent = 'This is the glorious text-content!';
+
+        container.appendChild(content);
+
+    In the JavaScript file, first we get a reference to the container div
+    that already exists in our HTML. Then we create a new div and store it
+    in the variable content. We add a class and some text to the content
+    div and finally append that div to container. All in all it's a simple
+    process. After the JavaScript code is run, our DOM tree will look like
+    this:
+
+        <!-- The DOM -->
+        <body>
+        <h1>
+            THE TITLE OF YOUR WEBPAGE
+        </h1>
+        <div id="container">
+            <div class="content">
+            This is the glorious text-content!
+            </div>
+        </div>
+        </body>
+
+    Keep in mind that JavaScript does NOT alter your HTML, but the DOM;
+    your HTML file will look the same, but the JavaScript changes what
+    the browser renders.
+
+    Your JavaScript, for the most part, is run whenever the JS file is run, or
+    when the script tag is enountered in the HTML. If you are including your
+    JavaScript at the top of your file, many of these DOM manipulation methods
+    will not work because the JS code is being run before the nodes are created
+    in the DOM. The simplest way to fix this is to include your JavaScript
+    at the bottom of your HTML file so that it gets run after the DOM nodes
+    are parsed and created.
+
+    Alternatively, you can link the JavaScript file in the head of your HTML
+    document. Use the script tag with the src attribute containing the path
+    to the JS file, and include the defer keyword to load the file AFTER
+    the HTML is parsed, see below:
+
+        <head>
+            <script src="js-file.js" defer></script>
+        </head>
+
     
