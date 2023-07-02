@@ -320,7 +320,7 @@ https://javascript.info/while-for # More info.
             input.value = "";
             input.focus();
             para.textContent = "";
-            for (const contact of contacts) {
+            `for` (const contact of contacts) {
                 const splitContact = contact.split (":");
                 if (splitContact[0].toLowerCase() === searchName) {
                     para.textContent = `${splitContact[0]}'s number is
