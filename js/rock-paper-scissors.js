@@ -1,34 +1,3 @@
-
-/*
-Plan
-
-    Need to create a function that randomly return either rock, paper or scissors.
-    This will be the computer's choice.
-
-    Need another cuntion that takes the playerSelection and computerSelection,
-    then returns a string that declares the winner of the round like: "You've lost,
-    paper beats rock."
-
-    The playerSelection function's parameters must be case-insensitive so the user
-    can input "rock", "ROCK", "rOcK", etc.
-
-    Each function should return a result, not console.log the results. This is so
-    I can use the results later.
-
-Pseudocode
-
-    Generate a random number, use Math.random to generate a number between 0 and 1.
-    There are three possible values, "rock", "paper", and "scissors" so we will
-    use thirds to get the result. If the number generated is less than or equal
-    to 0.33, then the computer has selected "rock", if the number is greater than
-    0.33 AND less than or equal to 0.67, then the computer has chosen "paper".
-    Anything else, and the computer has chosen "scissors".
-
-    Get a choice from the player using a prompt, convert the answer to lowercase,
-    use the lowecase answer to compare to computerSelection.
-
-*/
-
 let computerWins = 0;
 let playerWins = 0;
 let roundsPlayed = 0;
@@ -64,11 +33,9 @@ function getPlayerChoice() {
 
 }
 
-function playRound(playerSelLower, computerSelection) {
+function playRound(playerSelection, computerSelection) {
 
-    playerSelLower = getPlayerChoice();
-
-    computerSelection = getComputerChoice();
+    getComputerChoice();
 
     const beats = {
         "rock": "scissors",
@@ -76,7 +43,7 @@ function playRound(playerSelLower, computerSelection) {
         "scissors": "paper"
     };
 
-    console.log(`User selected: ${playerSelLower}!`);
+    console.log(`User selected: ${playerSelection}!`);
 
     console.log(`Computer selected: ${computerSelection}!`);
 
@@ -91,31 +58,64 @@ function playRound(playerSelLower, computerSelection) {
     } else {
         return stopGame = true;
     }
-
 }
-
 function game() {
 
-    stopGame = false;
+    console.log("Game Started!");
 
-    console.log("Let the game begin!");
 
-    for (i = roundsPlayed = 1; i < 6; i++) {
-        if (stopGame == false) {
-            console.log(`Round ${roundsPlayed}`)
-            roundsPlayed++;
-            playRound();
-            console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`);
-        } else {
-            // Temp output, need to restart the same round if incorrect input.
-            console.log("Incorrect input, try again.")
-            roundsPlayed - 1;
-            playRound();
+
+    /*
+        for (i = roundsPlayed = 1; i < 6; i++) {
+            if (stopGame == false) {
+                console.log(`Round ${roundsPlayed}`)
+                roundsPlayed++;
+                playRound();
+                console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`);
+            } else {
+                // Temp output, need to restart the same round if incorrect input.
+                console.log("Incorrect input, try again.")
+                roundsPlayed - 1;
+                playRound();
+            }
         }
-    }
+    */
+
+        /*
+
+            Need to add the below HTML code to the page after the play button is clicked.
+
+            <div class="board">
+
+                <div class="score">
+                    <p>Player Score: </p>
+                    <p>Computer Score: </p>
+                    <p>Rounds Played: </p>
+                </div>
+
+                <div class="output">
+                    <p>Press Play to start</p>
+                </div>
+
+            </div>
+
+            <div class="controls">
+                <div class="button">
+                    <button>Rock</button>
+                </div>
+                <div class="button">
+                    <button>Paper</button>
+                </div>
+                <div class="button">
+                    <button>Scissors</button>
+                </div>
+            </div>
+        */
 
     if (playerWins > computerWins) {
-        console.log("You've won the game!");
+        const score = document.querySelector("score");
+        score.element
+        
     } else if (playerWins === computerWins) {
         console.log("It's a draw, play another round.");
         playRound();
@@ -132,3 +132,47 @@ function game() {
     console.log("The game is over!");
 
 }
+
+function createUI() {
+    const content = document.querySelector(".content");
+    content.innerHTML = `
+    
+    <div class="board">
+
+    <div class="score">
+        <p>Player Score: </p>
+        <p>Computer Score: </p>
+        <p>Rounds Played: </p>
+    </div>
+
+</div>
+
+<div class="controls">
+    <div class="button">
+        <button>Rock</button>
+    </div>
+    <div class="button">
+        <button>Paper</button>
+    </div>
+    <div class="button">
+        <button>Scissors</button>
+    </div>
+</div>`;
+}
+
+const startGame = document.querySelector(".play");
+startGame.addEventListener("click", function (e) {
+    console.log(e)
+    const content = document.querySelector(".content");
+    const playButton = content.querySelector(".play");
+    playButton.remove();
+    createUI();
+});
+
+const controls = document.querySelector(".controls");
+controls.addEventListener("click", function (e) {
+    console.log(e);
+    playRound();
+    document.querySelector(".button");
+    button.classList.add(".pressed");
+});
