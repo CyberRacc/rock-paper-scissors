@@ -43,7 +43,7 @@ p {
     font-size: 24px;
 }
 
-.controls {
+.buttons {
     display: flex;
     gap: 12px;
     margin: 12px;
@@ -59,7 +59,7 @@ p {
     padding: 6px;
 }
 
-.controls button {
+.buttons button {
     background-color: transparent;
     border: 2px solid black;
     border-radius: 10px;

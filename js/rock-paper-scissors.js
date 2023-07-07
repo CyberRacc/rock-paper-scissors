@@ -1,7 +1,6 @@
 let computerWins = 0;
 let playerWins = 0;
-let roundsPlayed = 0;
-let stopGame = false;
+let roundsPlayed = 1;
 
 function getComputerChoice() {
 
@@ -20,22 +19,22 @@ function getComputerChoice() {
     return computerSelection;
 }
 
+
 function getPlayerChoice() {
 
-    let playerSelection = prompt("Enter rock, paper, or scissors: ");
+    let playerSelection = document.querySelectorAll(".button")
 
-    if (playerSelection === null || playerSelection === "") {
-        return stopGame = true;
+    if (document.querySelector("#rock")) {
+        return playerSelection = "rock";
+    } else if (document.querySelector("#paper")) {
+        return playerSelection = "paper";
     } else {
-        let playerSelLower = playerSelection.toLowerCase();
-        return playerSelLower;
+        return playerSelection = "scissors";
     }
 
 }
 
 function playRound(playerSelection, computerSelection) {
-
-    getComputerChoice();
 
     const beats = {
         "rock": "scissors",
@@ -47,74 +46,31 @@ function playRound(playerSelection, computerSelection) {
 
     console.log(`Computer selected: ${computerSelection}!`);
 
-    if (computerSelection === beats[playerSelLower]) {
-        console.log(`You win, ${playerSelLower} beats ${computerSelection}!`);
+    if (computerSelection === beats[playerSelection]) {
+        // const win = document.createElement("p");
+        // win.appendChild(".score")
+        // win.textContent = (`You win, ${playerSelection} beats ${computerSelection}!`);
+        console.log(`You win, ${playerSelection} beats ${computerSelection}!`);
         playerWins ++;
-    } else if (playerSelLower === beats[computerSelection]) {
-        console.log(`You lose, ${computerSelection} beats ${playerSelLower}!`)
+    } else if (playerSelection === beats[computerSelection]) {
+        console.log(`You lose, ${computerSelection} beats ${playerSelection}!`)
         computerWins ++;
-    } else if (playerSelLower == computerSelection) {
-        console.log(`You both selected ${playerSelLower}, it's a draw!`);
+    } else if (playerSelection == computerSelection) {
+        console.log(`You both selected ${playerSelection}, it's a draw!`);
     } else {
         return stopGame = true;
     }
+
+    roundsPlayed++;
 }
-function game() {
+function gameWinner() {
 
-    console.log("Game Started!");
-
-
-
-    /*
-        for (i = roundsPlayed = 1; i < 6; i++) {
-            if (stopGame == false) {
-                console.log(`Round ${roundsPlayed}`)
-                roundsPlayed++;
-                playRound();
-                console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`);
-            } else {
-                // Temp output, need to restart the same round if incorrect input.
-                console.log("Incorrect input, try again.")
-                roundsPlayed - 1;
-                playRound();
-            }
-        }
-    */
-
-        /*
-
-            Need to add the below HTML code to the page after the play button is clicked.
-
-            <div class="board">
-
-                <div class="score">
-                    <p>Player Score: </p>
-                    <p>Computer Score: </p>
-                    <p>Rounds Played: </p>
-                </div>
-
-                <div class="output">
-                    <p>Press Play to start</p>
-                </div>
-
-            </div>
-
-            <div class="controls">
-                <div class="button">
-                    <button>Rock</button>
-                </div>
-                <div class="button">
-                    <button>Paper</button>
-                </div>
-                <div class="button">
-                    <button>Scissors</button>
-                </div>
-            </div>
-        */
+    const gameWinner = document.createElement("p");
+    gameWinner.textContent = ""
 
     if (playerWins > computerWins) {
         const score = document.querySelector("score");
-        score.element
+        
         
     } else if (playerWins === computerWins) {
         console.log("It's a draw, play another round.");
@@ -138,41 +94,48 @@ function createUI() {
     content.innerHTML = `
     
     <div class="board">
-
-    <div class="score">
-        <p>Player Score: </p>
-        <p>Computer Score: </p>
-        <p>Rounds Played: </p>
+        <div class="score">
+            <p>Round: ${roundsPlayed}</p>
+            <p>Player Score: ${playerWins}</p>
+            <p>Computer Score: ${computerWins}</p>
+        </div>
     </div>
 
-</div>
-
-<div class="controls">
-    <div class="button">
-        <button>Rock</button>
-    </div>
-    <div class="button">
-        <button>Paper</button>
-    </div>
-    <div class="button">
-        <button>Scissors</button>
-    </div>
-</div>`;
+    <div class="buttons">
+        <div class="button">
+            <button class="controls" id="rock">Rock</button>
+        </div>
+        <div class="button">
+            <button class="controls" id="paper">Paper</button>
+        </div>
+        <div class="button">
+            <button class="controls" id="scissors">Scissors</button>
+        </div>
+    </div>`;
 }
 
-const startGame = document.querySelector(".play");
+function announceWinner() {
+
+}
+
+const startGame = document.querySelector(".play-button");
 startGame.addEventListener("click", function (e) {
-    console.log(e)
     const content = document.querySelector(".content");
     const playButton = content.querySelector(".play");
     playButton.remove();
     createUI();
-});
+    const controls = document.querySelectorAll(".controls");
+    controls.forEach( (button) => {
+        button.addEventListener("click", function (e) {
+            let roundsPlayed = 1
+            if (roundsPlayed < 6) {
+                let playerSelection = e.target.id;
+                let computerSelection = getComputerChoice();
+                playRound(playerSelection, computerSelection);
+                roundsPlayed++;
+            } else {
+                gameWinner(playerWins, computerWins);
+            }
+        })
+    })});
 
-const controls = document.querySelector(".controls");
-controls.addEventListener("click", function (e) {
-    console.log(e);
-    playRound();
-    document.querySelector(".button");
-    button.classList.add(".pressed");
-});
