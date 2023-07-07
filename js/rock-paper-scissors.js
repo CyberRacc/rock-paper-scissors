@@ -62,11 +62,21 @@ function playRound(playerSelection, computerSelection) {
     }
 
     roundsPlayed++;
+    const roundDisplay = document.querySelector(".round-display")
+    roundDisplay.textContent = `Round: ${roundsPlayed}`;
+
+    const computerScoreDisplay = document.querySelector(".score-display-computer");
+    const playerScoreDisplay = document.querySelector(".score-display-player");
+
+    playerScoreDisplay.textContent = `Player Score: ${playerWins}`;
+    computerScoreDisplay.textContent = `Computer Score: ${computerWins}`;
 }
 function gameWinner() {
 
     const gameWinner = document.createElement("p");
-    gameWinner.textContent = ""
+    gameWinner.textContent = `${winner} wins!`
+    const scoreArea = document.querySelector(".score");
+    scoreArea.appendChild(gameWinner);
 
     if (playerWins > computerWins) {
         const score = document.querySelector("score");
@@ -95,9 +105,9 @@ function createUI() {
     
     <div class="board">
         <div class="score">
-            <p>Round: ${roundsPlayed}</p>
-            <p>Player Score: ${playerWins}</p>
-            <p>Computer Score: ${computerWins}</p>
+            <p class="round-display">Round: ${roundsPlayed}</p>
+            <p class="score-display-player">Player Score: ${playerWins}</p>
+            <p class="score-display-computer">Computer Score: ${computerWins}</p>
         </div>
     </div>
 
