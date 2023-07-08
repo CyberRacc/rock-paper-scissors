@@ -72,64 +72,30 @@ function playRound(playerSelection, computerSelection) {
 
     const computerScoreDisplay = document.querySelector(".score-display-computer");
     const playerScoreDisplay = document.querySelector(".score-display-player");
+    const roundDisplay = document.querySelector(".round-display")
 
+    roundDisplay.textContent = `Round: ${roundsPlayed}`;
     playerScoreDisplay.textContent = `Player Score: ${playerWins}`;
     computerScoreDisplay.textContent = `Computer Score: ${computerWins}`;
 }
 
 // Determines and outputs the game winner.
 function gameWinner() {
-
     let winner = "";
 
     if (playerWins > computerWins) {
-        winner = "player";
-        console.log(`The winner is: ${winner}`);
-        const gameWinner = document.createElement("p");
-        gameWinner.textContent = `${winner} wins!`
-        const scoreArea = document.querySelector(".score");
-        scoreArea.appendChild(gameWinner);
-    
-        console.log("The game is over!");
-    } else if (playerWins === computerWins) {
-        console.log("It's a draw, play another round.");
-        playRound();
-        console.log(`Player Score: ${playerWins} | Computer Score: ${computerWins}`)
-        if (playerWins > computerWins) {
-            winner = "player";
-            console.log(`The winner is: ${winner}`);
-            const gameWinner = document.createElement("p");
-            gameWinner.textContent = `${winner} wins!`
-            const scoreArea = document.querySelector(".score");
-            const score = document.querySelector("score");
-        
-            score.appendChild(gameWinner);
-        
-            console.log("The game is over!");
-        } else {
-            winner = "computer";
-            console.log(`The winner is: ${winner}`);
-            const gameWinner = document.createElement("p");
-            gameWinner.textContent = `${winner} wins!`
-            const scoreArea = document.querySelector(".score");
-            const score = document.querySelector("score");
-        
-            score.appendChild(gameWinner);
-        
-            console.log("The game is over!");
-        }
+        winner = "Player wins!";
+    } else if (computerWins > playerWins) {
+        winner = "Computer wins!";
     } else {
-        winner = "computer";
-        console.log(`The winner is: ${winner}`);
-        const gameWinner = document.createElement("p");
-        gameWinner.textContent = `${winner} wins!`
-        const scoreArea = document.querySelector(".score");
-        const score = document.querySelector("score");
-    
-        score.appendChild(gameWinner);
-    
-        console.log("The game is over!");
+        winner = "It's a draw.";
     }
+
+    console.log(`The winner is: ${winner}`);
+    const gameWinner = document.createElement("p");
+    gameWinner.textContent = `${winner}`
+    const scoreArea = document.querySelector(".score");
+    scoreArea.appendChild(gameWinner);
 }
 
 // After the Play button is clicked, creates the UI to be used for the game
@@ -170,15 +136,13 @@ startGame.addEventListener("click", function (e) {
             if (roundsPlayed < 5) {
                 let playerSelection = e.target.id;
                 let computerSelection = getComputerChoice();
-                playRound(playerSelection, computerSelection);
                 roundsPlayed++;
-                const roundDisplay = document.querySelector(".round-display")
-                roundDisplay.textContent = `Round: ${roundsPlayed}`;
+                playRound(playerSelection, computerSelection);
             } else {
                 controls.forEach(button => {
                     button.disabled = true;
                 });
-                gameWinner(playerWins, computerWins);
+                gameWinner();
             }
         })
     })});
