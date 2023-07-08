@@ -142,7 +142,6 @@ startGame.addEventListener("click", function (e) {
     const controls = document.querySelectorAll(".controls");
     controls.forEach( (button) => {
         button.addEventListener("click", function (e) {
-            console.log(e);
             if (roundsPlayed < 5) {
                 let playerSelection = e.target.id;
                 let computerSelection = getComputerChoice();
