@@ -28,6 +28,7 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
 
+    let roundWinner = "";
     const beats = {
         "rock": "scissors",
         "paper": "rock",
@@ -36,16 +37,19 @@ function playRound(playerSelection, computerSelection) {
 
     if (computerSelection === beats[playerSelection]) {
         playerWins ++;
+        roundWinner = "Player";
     } else if (playerSelection === beats[computerSelection]) {
         computerWins ++;
+        roundWinner = "Computer";
     } else if (playerSelection == computerSelection) {
         playerWins ++;
         computerWins ++;
+        roundWinner = "tie";
     } else {
         return;
     }
 
-    updateScores(playerSelection, computerSelection);
+    updateScores(playerSelection, computerSelection, roundWinner);
 }
 
 // Determines and outputs the game winner.
@@ -60,26 +64,33 @@ function gameWinner() {
         winner = "It's a draw.";
     }
 
-    const gameWinner = document.createElement("p");
+    const gameWinner = document.querySelector(".game-winner");
     gameWinner.textContent = `${winner}`
     const scoreArea = document.querySelector(".score");
     scoreArea.appendChild(gameWinner);
 }
 
 // Updates the scores and roud values.
-function updateScores(playerSelection, computerSelection, winner) {
+function updateScores(playerSelection, computerSelection, roundWinner) {
     const computerScoreDisplay = document.querySelector(".score-display-computer");
     const playerScoreDisplay = document.querySelector(".score-display-player");
     const roundDisplay = document.querySelector(".round-display")
-    const selections = document.querySelector(".selections");
-    const roundWinner = document.querySelector(".round-winner");
 
     playerScoreDisplay.textContent = `Player Score: ${playerWins}`;
     computerScoreDisplay.textContent = `Computer Score: ${computerWins}`;
-    selections.innerHTML = `Player chose: <b>${playerSelection}</b>! <br> Computer chose: <b>${computerSelection}</b>!`;
     roundDisplay.textContent = `Round: ${roundsPlayed}`;
-    roundWinner.textContent = `${winner} wins, ${playerSelection} beats ${computerSelection}!`;
 
+    if (playerSelection && computerSelection) {
+        const selections = document.querySelector(".selections");
+        const winner = document.querySelector(".round-winner");
+
+        selections.innerHTML = `Player chose: <b>${playerSelection}</b>! <br> Computer chose: <b>${computerSelection}</b>!`;
+        if (roundWinner == "tie") {
+            winner.textContent = "It's a tie, a point to each!";
+        } else {
+        winner.textContent = `${roundWinner} wins, ${playerSelection} beats ${computerSelection}!`;
+        }
+    }
 }
 
 // After the Play button is clicked, creates the UI to be used for the game
@@ -109,14 +120,15 @@ function createUI() {
     
     <div class="reset-area">
         <div class="reset-button">
-            <button>Reset</button>
+            <button>New Game</button>
         </div>
     </div>
 
     <div class="feedbackArea">
         <div class="feedback">
             <p class="selections"></p>
-            <p class="roundWinner"></p>
+            <p class="round-winner"></p>
+            <p class="game-winner"></p>
         </div>
     </div>`; // Puts all this HTML inside the content div.
 }
@@ -130,6 +142,7 @@ startGame.addEventListener("click", function (e) {
     const controls = document.querySelectorAll(".controls");
     controls.forEach( (button) => {
         button.addEventListener("click", function (e) {
+            console.log(e);
             if (roundsPlayed < 5) {
                 let playerSelection = e.target.id;
                 let computerSelection = getComputerChoice();
@@ -151,11 +164,27 @@ startGame.addEventListener("click", function (e) {
         })
     });
     
-
     // Resets the game when reset button is clicked.
     const resetGame = document.querySelector(".reset-button");
     resetGame.addEventListener("click", function (e) {
         // Code that resets the game to go here
+        playerWins = 0;
+        computerWins = 0;
+        roundsPlayed = 1;
+        updateScores();
+        controls.forEach( (button) => {
+            button.disabled = false;
+            button.classList.remove("grey-out");
+        });
+
+        const selections = document.querySelector(".selections");
+        const winner = document.querySelector(".round-winner");
+        const gameWinner = document.querySelector(".game-winner");
+
+        selections.innerHTML = "";
+        winner.textContent = "";
+        gameWinner.textContent = "";
+
     });
     resetGame.addEventListener("mouseover", function (e) {
         resetGame.classList.add("hover-reset");
@@ -163,6 +192,12 @@ startGame.addEventListener("click", function (e) {
     resetGame.addEventListener("mouseout", function (e) {
         resetGame.classList.remove("hover-reset");
     });
-    
 });
 
+startGame.addEventListener("mouseover", function (e) {
+    startGame.classList.add("hover");
+});
+
+startGame.addEventListener("mouseout", function (e) {
+    startGame.classList.remove("hover");
+});
