@@ -74,7 +74,6 @@ p {
 }
 
 .buttons button {
-    background-color: white;
     border: 2px solid black;
     border-radius: 10px;
     font-size: large;
@@ -101,6 +100,17 @@ p {
 }
 
 .reset-button button {
+    background-color: rgb(255, 165, 165);
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    padding: 8px;
+    width: 100px;
+}
+
+.hover-reset button {
     background-color: rgb(255, 115, 115);
     border: 2px solid black;
     border-radius: 10px;
@@ -120,4 +130,8 @@ p {
 .feedback {
     text-align: left;
     
+}
+
+.hover {
+    background-color: rgb(166, 166, 255);
 }

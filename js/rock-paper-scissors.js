@@ -142,13 +142,26 @@ startGame.addEventListener("click", function (e) {
                 });
                 gameWinner();
             }
+        });
+        button.addEventListener("mouseover", function (e) {
+            button.classList.add("hover");
+        });
+        button.addEventListener("mouseout", function (e) {
+            button.classList.remove("hover");
         })
-    })
+    });
+    
 
     // Resets the game when reset button is clicked.
     const resetGame = document.querySelector(".reset-button");
     resetGame.addEventListener("click", function (e) {
-        
+        // Code that resets the game to go here
+    });
+    resetGame.addEventListener("mouseover", function (e) {
+        resetGame.classList.add("hover-reset");
+    });
+    resetGame.addEventListener("mouseout", function (e) {
+        resetGame.classList.remove("hover-reset");
     });
     
 });
