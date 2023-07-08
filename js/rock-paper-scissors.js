@@ -4,6 +4,7 @@ let roundsPlayed = 1;
 
 const startGame = document.querySelector(".play-button");
 
+
 // Randomly selects the computer's choice of rock, paper or scissors.
 function getComputerChoice() {
 
@@ -33,22 +34,18 @@ function playRound(playerSelection, computerSelection) {
         "scissors": "paper"
     };
 
-    console.log(`User selected: ${playerSelection}!`);
-    console.log(`Computer selected: ${computerSelection}!`);
-
     if (computerSelection === beats[playerSelection]) {
-        console.log(`You win, ${playerSelection} beats ${computerSelection}!`);
         playerWins ++;
     } else if (playerSelection === beats[computerSelection]) {
-        console.log(`You lose, ${computerSelection} beats ${playerSelection}!`)
         computerWins ++;
     } else if (playerSelection == computerSelection) {
-        console.log(`You both selected ${playerSelection}, it's a draw!`);
+        playerWins ++;
+        computerWins ++;
     } else {
         return;
     }
 
-    updateScores();
+    updateScores(playerSelection, computerSelection);
 }
 
 // Determines and outputs the game winner.
@@ -63,7 +60,6 @@ function gameWinner() {
         winner = "It's a draw.";
     }
 
-    console.log(`The winner is: ${winner}`);
     const gameWinner = document.createElement("p");
     gameWinner.textContent = `${winner}`
     const scoreArea = document.querySelector(".score");
@@ -71,14 +67,19 @@ function gameWinner() {
 }
 
 // Updates the scores and roud values.
-function updateScores() {
+function updateScores(playerSelection, computerSelection, winner) {
     const computerScoreDisplay = document.querySelector(".score-display-computer");
     const playerScoreDisplay = document.querySelector(".score-display-player");
     const roundDisplay = document.querySelector(".round-display")
+    const selections = document.querySelector(".selections");
+    const roundWinner = document.querySelector(".round-winner");
 
     playerScoreDisplay.textContent = `Player Score: ${playerWins}`;
     computerScoreDisplay.textContent = `Computer Score: ${computerWins}`;
+    selections.innerHTML = `Player chose: <b>${playerSelection}</b>! <br> Computer chose: <b>${computerSelection}</b>!`;
     roundDisplay.textContent = `Round: ${roundsPlayed}`;
+    roundWinner.textContent = `${winner} wins, ${playerSelection} beats ${computerSelection}!`;
+
 }
 
 // After the Play button is clicked, creates the UI to be used for the game
@@ -104,6 +105,19 @@ function createUI() {
         <div class="button">
             <button class="controls" id="scissors">Scissors</button>
         </div>
+    </div>
+    
+    <div class="reset-area">
+        <div class="reset-button">
+            <button>Reset</button>
+        </div>
+    </div>
+
+    <div class="feedbackArea">
+        <div class="feedback">
+            <p class="selections"></p>
+            <p class="roundWinner"></p>
+        </div>
     </div>`; // Puts all this HTML inside the content div.
 }
 
@@ -112,6 +126,7 @@ startGame.addEventListener("click", function (e) {
     const playButton = content.querySelector(".play");
     playButton.remove();
     createUI();
+    content.classList.add("content-border");
     const controls = document.querySelectorAll(".controls");
     controls.forEach( (button) => {
         button.addEventListener("click", function (e) {
@@ -123,9 +138,18 @@ startGame.addEventListener("click", function (e) {
             } else {
                 controls.forEach(button => {
                     button.disabled = true;
+                    button.classList.add("grey-out")
                 });
                 gameWinner();
             }
         })
-    })});
+    })
+
+    // Resets the game when reset button is clicked.
+    const resetGame = document.querySelector(".reset-button");
+    resetGame.addEventListener("click", function (e) {
+        
+    });
+    
+});
 

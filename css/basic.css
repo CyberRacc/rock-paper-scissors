@@ -26,6 +26,14 @@
     font-family: 'Raleway', sans-serif;
 }
 
+.content-border {
+    border: 4px solid black;
+    border-radius: 12px;
+    width: 500px;
+    margin: 0 auto;
+    padding: 0;
+}
+
 .board {
     display: flex;
 
@@ -59,12 +67,57 @@ p {
     padding: 6px;
 }
 
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .buttons button {
-    background-color: transparent;
+    background-color: white;
     border: 2px solid black;
     border-radius: 10px;
     font-size: large;
     font-weight: bold;
     font-family: 'Raleway', sans-serif;
     padding: 8px;
+    width: 100px;
+}
+
+.buttons button.grey-out {
+    background-color: rgb(177, 177, 177);
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    padding: 8px;
+}
+
+.resetArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reset-button button {
+    background-color: rgb(255, 115, 115);
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: large;
+    font-weight: bold;
+    font-family: 'Raleway', sans-serif;
+    padding: 8px;
+    width: 100px;
+}
+
+.feedback-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feedback {
+    text-align: left;
+    
 }
