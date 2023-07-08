@@ -2,6 +2,7 @@ let computerWins = 0;
 let playerWins = 0;
 let roundsPlayed = 1;
 
+const startGame = document.querySelector(".play-button");
 
 // Randomly selects the computer's choice of rock, paper or scissors.
 function getComputerChoice() {
@@ -21,24 +22,7 @@ function getComputerChoice() {
         computerSelection = "scissors";
     }
 
-    // Returns the computerSelection to be used in the game.
     return computerSelection;
-}
-
-// Gets the player choice based on which button they select.
-function getPlayerChoice() {
-
-    // playerSelection is defined as a nodelist of items with the button class.
-    let playerSelection = document.querySelectorAll(".button")
-
-    // Defines the playerSelection as rock, paper or scissors based on which ID is clicked.
-    if (document.querySelector("#rock")) {
-        return playerSelection = "rock";
-    } else if (document.querySelector("#paper")) {
-        return playerSelection = "paper";
-    } else {
-        return playerSelection = "scissors";
-    }
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -50,13 +34,9 @@ function playRound(playerSelection, computerSelection) {
     };
 
     console.log(`User selected: ${playerSelection}!`);
-
     console.log(`Computer selected: ${computerSelection}!`);
 
     if (computerSelection === beats[playerSelection]) {
-        // const win = document.createElement("p");
-        // win.appendChild(".score")
-        // win.textContent = (`You win, ${playerSelection} beats ${computerSelection}!`);
         console.log(`You win, ${playerSelection} beats ${computerSelection}!`);
         playerWins ++;
     } else if (playerSelection === beats[computerSelection]) {
@@ -68,15 +48,7 @@ function playRound(playerSelection, computerSelection) {
         return;
     }
 
-
-
-    const computerScoreDisplay = document.querySelector(".score-display-computer");
-    const playerScoreDisplay = document.querySelector(".score-display-player");
-    const roundDisplay = document.querySelector(".round-display")
-
-    roundDisplay.textContent = `Round: ${roundsPlayed}`;
-    playerScoreDisplay.textContent = `Player Score: ${playerWins}`;
-    computerScoreDisplay.textContent = `Computer Score: ${computerWins}`;
+    updateScores();
 }
 
 // Determines and outputs the game winner.
@@ -96,6 +68,17 @@ function gameWinner() {
     gameWinner.textContent = `${winner}`
     const scoreArea = document.querySelector(".score");
     scoreArea.appendChild(gameWinner);
+}
+
+// Updates the scores and roud values.
+function updateScores() {
+    const computerScoreDisplay = document.querySelector(".score-display-computer");
+    const playerScoreDisplay = document.querySelector(".score-display-player");
+    const roundDisplay = document.querySelector(".round-display")
+
+    playerScoreDisplay.textContent = `Player Score: ${playerWins}`;
+    computerScoreDisplay.textContent = `Computer Score: ${computerWins}`;
+    roundDisplay.textContent = `Round: ${roundsPlayed}`;
 }
 
 // After the Play button is clicked, creates the UI to be used for the game
@@ -124,7 +107,6 @@ function createUI() {
     </div>`; // Puts all this HTML inside the content div.
 }
 
-const startGame = document.querySelector(".play-button");
 startGame.addEventListener("click", function (e) {
     const content = document.querySelector(".content");
     const playButton = content.querySelector(".play");
